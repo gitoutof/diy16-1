@@ -72,6 +72,21 @@ jobs:
         cd openwrt
         ../$DIY_P1_SH
 
+    - name: Update feeds
+      run: cd openwrt && ./scripts/feeds update -a
+
+    - name: Install feeds
+      run: cd openwrt && ./scripts/feeds install -a
+
+    - name: Load custom configuration
+      run: |
+        [ -e files ] && mv files openwrt/files
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        chmod +x $DIY_P2_SH
+        cd openwrt
+        ../$DIY_P2_SH
+
+
 
     - name: SSH connection via tmate
       uses: gitoutof/ssh2actions@main
