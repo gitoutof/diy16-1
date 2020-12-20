@@ -108,7 +108,6 @@ jobs:
         echo ===end===
         pwd
         ls -al
-        ls -al openwrt/bin
 
     - name: Upload bin directory
       uses: actions/upload-artifact@main
