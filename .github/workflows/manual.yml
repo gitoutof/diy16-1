@@ -34,6 +34,7 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
+    
 
     - name: Send greeting
       run: echo "Hello ${{ github.event.inputs.ssh }}"
@@ -104,6 +105,11 @@ jobs:
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "::set-output name=status::success"
+        echo ===end===
+        pwd
+        ls -al
+        ls -al openwrt/bin
+
     - name: Upload bin directory
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
