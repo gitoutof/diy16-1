@@ -4,7 +4,7 @@ name: Manual workflow
 on:
   workflow_dispatch:
     inputs:
-      name:
+      ssh:
         description: 'Person to greet'
 
         default: 'World'
@@ -21,7 +21,7 @@ jobs:
     steps:
 
     - name: Send greeting
-      run: echo "Hello ${{ github.event.inputs.name }}"
+      run: echo "Hello ${{ github.event.inputs.ssh }}"
 
     - name: Checkout
       uses: actions/checkout@master
@@ -32,3 +32,16 @@ jobs:
       run: |
         ls -al
         pwd
+
+
+    - name: SSH connection via tmate
+      uses: gitoutof/ssh2actions@main
+      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+      env:
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          
+          
+          
+          
+  
