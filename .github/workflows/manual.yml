@@ -51,7 +51,8 @@ jobs:
       run: echo "Hello ${{ github.event.inputs.ssh }}"
 
     - name: Checkout
-      uses: actions/checkout@master
+      uses: actions/checkout@main
+#      uses: actions/checkout@master
 
     - name: Initialization environment
       env:
