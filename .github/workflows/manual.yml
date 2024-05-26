@@ -3,13 +3,13 @@ name: Manual workflow
 
 on:
   workflow_dispatch:
-    inputs:
-      ssh:
-        description: 'Person to greet'
+#    inputs:
+#      ssh:
+#        description: 'Person to greet'
 
-        default: 'World'
+#        default: 'World'
 
-        required: true
+#        required: true
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
